@@ -6,21 +6,19 @@ if exist %filename% goto delete_file
 if not exist %filename% goto run_prog
 
 :delete_file
-
 del "%~dp0%filename%"
 
 goto run_prog
 
 :run_prog
-
 :: create blank file
 @echo. >NUL>%filename%
 
 set /p num=Number of inputs:
-::for hold for later use in loops
+:: for hold for later use in loops
 set /a temp=%num%
 
-::check validity of inputs
+:: check validity of inputs
 if %num% LEQ 0 goto error_module
 if not %num% LEQ 0 goto initial_loop_input
 
@@ -28,7 +26,7 @@ if not %num% LEQ 0 goto initial_loop_input
 set inputs=
 
 :loop_input
-::Gather all inputs in list
+:: Gather all inputs in list
 if %num%==0 (
 	set /a num=%temp%
 	cmd /c "cd /d %~dp0"
@@ -49,15 +47,7 @@ if %num%==0 (
 )
 
 ::run program with inputs as parameter
-@echo.
-@echo C code
-cmd /c timeit -a "a.exe !inputs[%num%]!"
-@echo.
-@echo Python Code
-cmd /c timeit -a "python findFromList.py"
-
 rem cmd /c "a.exe !inputs[%num%]!"
-
 set /a num-=1
 
 goto exitloop_input
