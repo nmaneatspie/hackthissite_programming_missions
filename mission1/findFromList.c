@@ -10,9 +10,9 @@
 	
 */
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define numwords 1275
 #define BUF 10
@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 	short counter = 0;
 	
 	if(file == NULL) {
-      perror("Error opening file");
-      return(-1);
+	      perror("Error opening file");
+	      return(-1);
 	}
 	
 	//determine file size
@@ -55,6 +55,7 @@ int main(int argc, char **argv)
 	char *charArr = malloc(++filesize * sizeof(*charArr));
 	char charIn;
 	i = -1;
+	
 	do{
 		if(feof(file))
 		{
@@ -71,8 +72,9 @@ int main(int argc, char **argv)
 	
 	fclose(file);
 		
-	const char delim[2] = "\n";
-
+	
+        const char delim[2] = "\n";
+	
 	//split string content into words in array
 	if(charArr != NULL){ 
 		i = 0;
@@ -90,6 +92,7 @@ int main(int argc, char **argv)
 					token[j] = '\0';
 				}
 			}
+			
 			strcpy(words[i], token);
 
 		}
