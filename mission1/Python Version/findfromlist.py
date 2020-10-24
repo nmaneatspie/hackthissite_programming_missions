@@ -15,7 +15,13 @@
 import sys
 import datetime
 
+#Variables
 debug = True #just for testing/debugging in visual studio
+
+dictionary_file = "dictionary.txt"
+jumbled_file = "jumbled.txt"
+results_file = "results.txt"
+dictionary_words = []
 
 #Functions
 #File loading function
@@ -54,18 +60,16 @@ def write_file(filename, err_num):
     sys.exit([2])
 
 #Error logging code: file related
-
 def error_log(err_num, filename = ""):
     if err_num == -1: #Prevent looping when writing error to log
         sys.exit([2])
-
     err_msg = {
         1: "Error opening file {}".format(filename),
         2: "Error with reading from dictionary file",
-        3: "Error with closing dictionary file"
+        3: "Error with closing dictionary file",
         }
     try:
-        file = file_write(filename, -1)
+        file = write_file(filename, -1)
         file.write("{} ".format(datetime.datetime.now()))
         file.write("{}\n".format(err_msg.get(err_num)))
         file.close()
@@ -74,8 +78,6 @@ def error_log(err_num, filename = ""):
     sys.exit([1])
 
 #Main code:
-dictionary_file = "dictionary.txt"
-dictionary_words = []
 
 #Load dictionary words into array from file.
 file = load_file(dictionary_file, 1)
@@ -90,3 +92,6 @@ try:
     file.close()
 except:
     error_log(3)
+
+#Load jumbled words from file
+file = load_file(jumbled_file, 1)
