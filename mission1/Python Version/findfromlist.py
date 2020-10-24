@@ -80,9 +80,8 @@ dictionary_words = []
 #Load dictionary words into array from file.
 file = load_file(dictionary_file, 1)
 
-#Dictionary file has each word on it's own line
 try:
-    for x in file:
+    for x in file: #Dictionary file has each word on it's own line
         dictionary_words.append(x)
 except:
     error_log(2)
