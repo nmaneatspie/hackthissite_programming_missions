@@ -22,6 +22,7 @@ dictionary_file = "dictionary.txt"
 jumbled_file = "jumbled.txt"
 results_file = "results.txt"
 dictionary_words = []
+jumbled_words = []
 
 #Functions
 #File loading function
@@ -65,8 +66,10 @@ def error_log(err_num, filename = ""):
         sys.exit([2])
     err_msg = {
         1: "Error opening file {}".format(filename),
-        2: "Error with reading from dictionary file",
-        3: "Error with closing dictionary file",
+        2: "Error with reading from {}".format(dictionary_file),
+        3: "Error with closing dictionary file {}".format(dictionary_file),
+        4: "Error reading from {}".format(jumbled_file),
+        5: "Error with closing dictionary file {}".format(jumbled_file),
         }
     try:
         file = write_file(filename, -1)
@@ -95,3 +98,14 @@ except:
 
 #Load jumbled words from file
 file = load_file(jumbled_file, 1)
+
+try:
+    for x in file:
+        jumbled_words.append(x)
+except:
+    error_log(4)
+
+try:
+    file.close
+except:
+    error_log(5)
