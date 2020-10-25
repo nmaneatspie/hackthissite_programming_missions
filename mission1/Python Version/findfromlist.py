@@ -126,7 +126,6 @@ if enabled == True: # To be done. This is the algorithm done in C converted to p
             if len(y) == str_len:
                 temp_words.append(y)
 
-    temp2_words = [[]]
     #reduce list further to words holding first char of jumbeld word
     #for x in jumbled_words:
 
